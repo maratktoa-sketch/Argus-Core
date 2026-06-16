@@ -1,33 +1,392 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Argus Core</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argus Core — Антивирус</title>
+    <!-- Подключаем шрифт для красоты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial; background: #0d1117; color: #e6edf3; text-align: center; padding: 40px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { color: #58a6ff; font-size: 48px; }
-        .btn { background: #238636; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-size: 20px; display: inline-block; margin: 20px 0; }
-        .card { background: #161b22; padding: 20px; border-radius: 10px; margin: 10px; display: inline-block; width: 200px; vertical-align: top; }
-        .footer { margin-top: 40px; border-top: 1px solid #30363d; padding-top: 20px; color: #8b949e; }
+        /* ОБЩИЕ НАСТРОЙКИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #0b0e14; /* почти черный */
+            color: #e6edf3;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #0d1117;
+            border-radius: 32px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            border: 1px solid #21262d;
+        }
+
+        /* ШАПКА */
+        .header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #21262d;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: #58a6ff;
+            letter-spacing: -1px;
+            text-shadow: 0 0 15px rgba(88, 166, 255, 0.15);
+        }
+
+        .header .version {
+            background: #1f2937;
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #8b949e;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 20px;
+            color: #8b949e;
+            margin-top: 10px;
+        }
+
+        /* ГЛАВНЫЙ БАННЕР */
+        .banner {
+            background: linear-gradient(145deg, #161b22, #0d1117);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid #30363d;
+            margin-bottom: 40px;
+        }
+
+        .banner h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f0f6fc;
+        }
+
+        .banner h2 span {
+            color: #58a6ff;
+        }
+
+        .banner p {
+            font-size: 18px;
+            color: #8b949e;
+            max-width: 600px;
+            margin: 16px auto 24px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: #238636;
+            color: #fff;
+            font-weight: 700;
+            font-size: 20px;
+            padding: 14px 40px;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: 0 8px 0 #1a5e2a;
+            transition: all 0.08s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 #1a5e2a;
+            background: #2ea043;
+        }
+
+        .btn-primary:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #1a5e2a;
+        }
+
+        /* СЕТКА ФИШЕК */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: #161b22;
+            border-radius: 20px;
+            padding: 24px 18px;
+            text-align: center;
+            border: 1px solid #21262d;
+            transition: 0.15s;
+        }
+
+        .feature-card:hover {
+            border-color: #58a6ff;
+            background: #1c2333;
+            transform: scale(1.02);
+        }
+
+        .feature-card .icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #f0f6fc;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: #8b949e;
+        }
+
+        /* БЛОК "О НАС" */
+        .about-section {
+            background: #161b22;
+            border-radius: 20px;
+            padding: 30px 28px;
+            border: 1px solid #21262d;
+            margin-bottom: 30px;
+        }
+
+        .about-section h3 {
+            font-size: 24px;
+            color: #58a6ff;
+            margin-bottom: 12px;
+        }
+
+        .about-section p {
+            color: #c9d1d9;
+            font-size: 16px;
+            max-width: 700px;
+        }
+
+        .about-section .tag {
+            display: inline-block;
+            background: #1f2937;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            color: #8b949e;
+            margin-top: 8px;
+        }
+
+        /* ОТЗЫВЫ */
+        .reviews {
+            background: #161b22;
+            border-radius: 20px;
+            padding: 30px 28px;
+            border: 1px solid #21262d;
+            margin-bottom: 30px;
+        }
+
+        .reviews h3 {
+            font-size: 24px;
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+
+        .reviews .empty {
+            color: #8b949e;
+            font-style: italic;
+        }
+
+        .review-item {
+            background: #0d1117;
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-top: 12px;
+            border-left: 4px solid #58a6ff;
+        }
+
+        .review-item strong {
+            color: #f0f6fc;
+        }
+
+        .review-item span {
+            color: #8b949e;
+            font-size: 14px;
+        }
+
+        /* ПОДДЕРЖКА */
+        .support {
+            background: #161b22;
+            border-radius: 20px;
+            padding: 30px 28px;
+            border: 1px solid #21262d;
+            margin-bottom: 30px;
+        }
+
+        .support h3 {
+            font-size: 24px;
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+
+        .support a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .support a:hover {
+            text-decoration: underline;
+        }
+
+        /* ФУТЕР */
+        .footer {
+            border-top: 2px solid #21262d;
+            padding-top: 24px;
+            margin-top: 20px;
+            text-align: center;
+            color: #8b949e;
+            font-size: 14px;
+        }
+
+        .footer .brand {
+            font-weight: 700;
+            color: #c9d1d9;
+        }
+
+        .footer .socials a {
+            color: #8b949e;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+            transition: 0.15s;
+        }
+
+        .footer .socials a:hover {
+            color: #58a6ff;
+        }
+
+        .footer .copy {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        /* АДАПТАЦИЯ ПОД ТЕЛЕФОН */
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            .header h1 { font-size: 36px; }
+            .banner h2 { font-size: 24px; }
+            .btn-primary { font-size: 17px; padding: 12px 28px; }
+            .features { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🛡️ ARGUS CORE v1.0</h1>
-        <p style="font-size: 20px;">Твой личный щит от вирусов</p>
-        <a href="#" class="btn">🚀 Скачать бесплатно</a>
-        
-        <div>
-            <div class="card"><h3>⚡ Быстрое</h3><p>Проверка за 2 минуты</p></div>
-            <div class="card"><h3>🔍 Полное</h3><p>Проверка всего диска C:</p></div>
-            <div class="card"><h3>🌐 Авто-обновление</h3><p>База вирусов из интернета</p></div>
-        </div>
 
-        <div class="footer">
-            <p>Sentagon Corporation TM | Mikadon Marat / Marat1234 | 2026 ©</p>
-            <p>YouTube | Telegram</p>
+<div class="container">
+
+    <!-- ШАПКА -->
+    <div class="header">
+        <h1>🛡️ ARGUS CORE</h1>
+        <div class="version">v1.0 · Стабильный релиз</div>
+        <p>Твой личный щит от вирусов</p>
+    </div>
+
+    <!-- БАННЕР С КНОПКОЙ -->
+    <div class="banner">
+        <h2>Защита, которой <span>можно доверять</span></h2>
+        <p>Бесплатный антивирус, который не грузит систему. Сканирует за минуты и всегда обновляется сам.</p>
+        <!-- ССЫЛКУ ПОМЕНЯЕШЬ ПОТОМ НА РЕАЛЬНУЮ -->
+        <a href="#" class="btn-primary">🚀 Скачать бесплатно</a>
+    </div>
+
+    <!-- СЕТКА ФИШЕК -->
+    <div class="features">
+        <div class="feature-card">
+            <div class="icon">⚡</div>
+            <h3>Быстрое</h3>
+            <p>Проверка ключевых папок за 2 минуты</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔍</div>
+            <h3>Полное</h3>
+            <p>Глубокая проверка всего диска C:</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🌐</div>
+            <h3>Авто-обновление</h3>
+            <p>База вирусов обновляется из интернета</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🌍</div>
+            <h3>Два языка</h3>
+            <p>Русский и английский в настройках</p>
         </div>
     </div>
+
+    <!-- О НАС -->
+    <div class="about-section">
+        <h3>📋 О проекте</h3>
+        <p>
+            Argus Core — это антивирус, который я разрабатываю с нуля на C#. 
+            Он создан для тех, кто ценит скорость и простоту. 
+            Никакой рекламы, никаких подписок. Просто защита.
+        </p>
+        <div class="tag">Sentagon Corporation TM</div>
+        <div class="tag" style="margin-left: 8px;">Mikadon Marat / Marat1234</div>
+        <div class="tag" style="margin-left: 8px;">© 2026</div>
+    </div>
+
+    <!-- ОТЗЫВЫ (пока пустые, но структура готова) -->
+    <div class="reviews">
+        <h3>💬 Отзывы</h3>
+        <p class="empty">Пока отзывов нет. Стань первым!</p>
+        <!-- Сюда потом добавятся реальные отзывы, например:
+        <div class="review-item">
+            <strong>Алексей</strong> <span>— 5 дней назад</span>
+            <p>Отличный антивирус! Нашёл вирусы, которые другие пропускали.</p>
+        </div>
+        -->
+    </div>
+
+    <!-- ПОДДЕРЖКА -->
+    <div class="support">
+        <h3>✉️ Поддержка</h3>
+        <p>
+            Если у вас возникли вопросы или проблемы, пишите на почту: 
+            <a href="mailto:tvoyapochta@gmail.com">tvoyapochta@gmail.com</a>
+        </p>
+        <p style="margin-top: 6px; color: #8b949e;">
+            Также вы можете оставить отзыв в Telegram-боте: <strong>@ArgusCoreBot</strong> (скоро)
+        </p>
+    </div>
+
+    <!-- ФУТЕР -->
+    <div class="footer">
+        <div class="brand">Sentagon Corporation TM</div>
+        <div style="margin-top: 4px;">Mikadon Marat / Marat1234</div>
+        <div class="socials" style="margin-top: 12px;">
+            <a href="#">YouTube</a>
+            <a href="#">Telegram</a>
+            <a href="mailto:tvoyapochta@gmail.com">Почта</a>
+        </div>
+        <div class="copy">© 2026 Argus Core. Все права защищены.</div>
+    </div>
+
+</div>
+
 </body>
 </html>
