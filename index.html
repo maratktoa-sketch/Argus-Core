@@ -46,6 +46,35 @@
         .footer .socials a:hover { color: #58a6ff; }
         .footer .copy { margin-top: 10px; font-size: 13px; }
         @media (max-width: 600px) { .container { padding: 20px 16px; } .header h1 { font-size: 36px; } .banner h2 { font-size: 24px; } .btn-primary { font-size: 17px; padding: 12px 28px; } .features { grid-template-columns: 1fr; } }
+        /* ДОПОЛНИТЕЛЬНЫЙ СТИЛЬ ДЛЯ НОВОЙ КНОПКИ GMAIL */
+        .btn-gmail { 
+            display: inline-block; 
+            background: #ea4335; 
+            color: #fff; 
+            font-weight: 700; 
+            font-size: 16px; 
+            padding: 10px 24px; 
+            border-radius: 40px; 
+            text-decoration: none; 
+            box-shadow: 0 8px 0 #b71c1c; 
+            transition: all 0.08s ease; 
+            border: none; 
+            cursor: pointer; 
+            margin-top: 10px;
+        }
+        .btn-gmail:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 0 #b71c1c; 
+            background: #f55a4a; 
+        }
+        .btn-gmail:active { 
+            transform: translateY(4px); 
+            box-shadow: 0 4px 0 #b71c1c; 
+        }
+        .divider { 
+            color: #8b949e; 
+            margin: 0 10px; 
+        }
     </style>
 </head>
 <body>
@@ -83,28 +112,22 @@
         <div class="tag" style="margin-left: 8px;">© 2026</div>
     </div>
 
-    <!-- ОТЗЫВЫ С ПРИМЕРАМИ -->
+    <!-- ОТЗЫВЫ -->
     <div class="reviews">
         <h3>💬 Отзывы</h3>
-
-        <!-- ===== ВСТАВЛЯЙ СВОИ ОТЗЫВЫ СЮДА ===== -->
 
         <div class="review-item">
             <strong>Проверка</strong> <span>— 5 дней назад</span>
             <p>Отличный антивирус! Нашёл вирусы, которые другие пропускали. Рекомендую!</p>
         </div>
-
         <div class="review-item">
             <strong>Проверка</strong> <span>— 3 дня назад</span>
             <p>Скачал, запустил — всё работает. Просто и понятно, без лишнего мусора.</p>
         </div>
-
         <div class="review-item">
             <strong>Проверка</strong> <span>— вчера</span>
             <p>Argus Core нашёл троян, который сидел у меня полгода. Спасибо разработчику!</p>
         </div>
-
-        <!-- ===== КОНЕЦ БЛОКА С ОТЗЫВАМИ ===== -->
 
         <br>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDmTVMLNnKG4a0tM6ManMAAajq_TU-aLEIsRiKd_A1l7dbDg/viewform?usp=header" target="_blank" class="btn-primary" style="font-size: 16px; padding: 10px 24px; background: #1f6feb; box-shadow: 0 8px 0 #1557b0;">
@@ -112,21 +135,31 @@
         </a>
     </div>
 
-    <!-- ПОДДЕРЖКА -->
+    <!-- ПОДДЕРЖКА (обновлённая почта) -->
     <div class="support">
         <h3>✉️ Поддержка</h3>
-        <p>📧 По всем вопросам пишите на почту: <a href="mailto:maratantiviruspoderzka@gmail.com" target="_blank" onclick="window.open('mailto:maratantiviruspoderzka@gmail.com'); return false;" style="color: #58a6ff; text-decoration: none;">Почта</a>
-        <p style="margin-top: 6px; color: #8b949e;">📱 Также вы можете обратиться в поддержку через Telegram-бота: <strong>@ArgusCoreBot</strong> (скоро)</p>
+        <p>📧 По всем вопросам пишите на почту: <a href="mailto:m80830924@gmail.com">m80830924@gmail.com</a></p>
+        <p style="margin-top: 6px; color: #8b949e;">
+            📱 Также вы можете обратиться в поддержку через Telegram-бота: <strong>@ArgusCoreBot</strong> (скоро)
+        </p>
+        <!-- НОВАЯ КНОПКА ДЛЯ GMAIL -->
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=m80830924@gmail.com" target="_blank" class="btn-gmail">
+            ✉️ Написать через Gmail
+        </a>
+        <p style="margin-top: 10px; font-size: 13px; color: #8b949e;">
+            Если письмо не открывается — нажмите кнопку выше, чтобы открыть Gmail
+        </p>
     </div>
 
-    <!-- ФУТЕР -->
+    <!-- ФУТЕР (обновлённая почта) -->
     <div class="footer">
         <div class="brand">Sentagon Corporation TM</div>
         <div style="margin-top: 4px;">Mikadon Marat / Marat1234</div>
         <div class="socials" style="margin-top: 12px;">
             <a href="#">YouTube</a>
             <a href="#">Telegram</a>
-            <a href="mailto:maratantiviruspoderzka@gmail.com">Почта</a>
+            <!-- ПОЧТА ЗАМЕНЕНА НА НОВУЮ -->
+            <a href="mailto:m80830924@gmail.com">Почта</a>
         </div>
         <div class="copy">© 2026 Argus Core. Все права защищены.</div>
     </div>
